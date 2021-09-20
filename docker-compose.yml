@@ -5,7 +5,9 @@ services:
         ports:
             - "8181:80"
         volumes:
-            - ./site1:/site1
+            - ./sites/site1:/var/html/site1
+            - ./sites/site2:/var/html/site2
+            - ./sites/default:/var/html/default
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         links:
             - php
@@ -13,5 +15,6 @@ services:
     php:
         image: php:7-fpm
         volumes:
-            - ./site1:/site1
-            - ./site2:/site2
+            - ./sites/site1:/var/html/site1
+            - ./sites/site2:/var/html/site2
+            - ./sites/default:/var/html/default
